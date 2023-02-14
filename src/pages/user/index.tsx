@@ -5,7 +5,7 @@ import 'react-calendar/dist/Calendar.css'
 import {addDays, addMinutes, format} from 'date-fns'
 //import oData from './data.json'
 import 'antd/dist/reset.css';
-import {Typography, Table, Tag, Col, Row, Input, Modal} from "antd";
+import {Typography, Table, Tag, Col, Row, Input, Modal, Form} from "antd";
 import axios from 'axios'
 import "@fontsource/roboto-condensed"
 import "@fontsource/passion-one"
@@ -157,6 +157,9 @@ function Component() {
                 setData(items)
                 setIsConfirmOpen(true)
             //})
+        }
+        else {
+            alert('Por favor, describa la razón de su cita')
         }
     }
     const tile = (date: Date) => {
@@ -334,6 +337,11 @@ function Component() {
                         }}>
                         2. Describa la razón de su cita
                         </h3>
+                        <Form>
+                        <Form.Item
+
+                            rules={[{ required: true, message: 'Please input your username!' }]}
+    >                   /
                         <TextArea value={comment} onChange={changeComment} />
                             <h3 style={{
                             color: '#003659',
@@ -344,9 +352,11 @@ function Component() {
                             fontSize: '20px',
                             fontWeight: '900',
                             letterSpacing: '-.2px'
-                        }}>
-                        2. Seleccione un horario libre de la lista
-                        </h3>
+                             }}>
+                            3. Seleccione un horario libre de la lista
+                            </h3>
+                        </Form.Item>
+                        </Form>
                     </>
             }
             {user.name && data && <Schedule items={data["Piura"].fechas[currentDay]} day={currentDay} onChangeData={changeData}/> }
